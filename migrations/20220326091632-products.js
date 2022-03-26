@@ -20,8 +20,8 @@ exports.up = function(db) {
       name: { type: 'string', length:100, notNull:true},
       cost: 'int',
       image: 'string',
-      description:'text',
-      ingredient: 'text',      
+      description:'string',
+      ingredient: 'string',      
   });
 };
 
