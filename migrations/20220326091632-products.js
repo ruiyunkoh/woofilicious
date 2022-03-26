@@ -19,14 +19,14 @@ exports.up = function(db) {
       id: { type: 'int', primaryKey:true, autoIncrement:true, unsigned: true},
       name: { type: 'string', length:100, notNull:true},
       cost: 'int',
-      image: 'text',
+      image: 'string',
       description:'text',
       ingredient: 'text',      
   });
 };
 
 exports.down = function(db) {
-  return db.dropTable('products');
+  return db.dropTable("products");
 };
 
 exports._meta = {
