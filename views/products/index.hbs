@@ -8,9 +8,14 @@
     <h5 class="card-title text-black">{{this.name}}</h5>
     <p class="card-text">{{this.description}}</p>
     <p class="card-text">{{this.cost}}</p>
-    <class="btn btn-outline-light btn-sm">Add to cart</a>
+    <div class="icons">
+      <i class="fa-solid fa-cart-plus"></i>
+      <i class="fa-solid fa-pen-to-square" href="/products/{{this.id}}/update"></i>
+      <i class="fa-solid fa-trash" href="/products/{{this.id}}/delete" ></i>
+    </div>    
   </div>
 </div>
+<button type="button" href="/products/create" class="btn btn-outline-light">Add more products</button>
 {{/block}}
 
 {{/extends}}
