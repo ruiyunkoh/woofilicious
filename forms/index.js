@@ -38,7 +38,8 @@ const createProductForm = () => {
             errorAfterField: true,
             cssClasses: {
                 label: ['form-label']
-            }
+            },
+            'validators':[validators.integer()]
         }),
         'image': fields.string({
             required: true,

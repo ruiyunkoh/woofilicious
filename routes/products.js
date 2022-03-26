@@ -32,8 +32,12 @@ router.post('/create', async(req,res)=>{
             product.set('ingredient', form.data.ingredient);
             await product.save();
             res.redirect('/products');
-
-        }
+        },
+        'error': async (form) => {
+            res.render('products/create', {
+                'form': form.toHTML(bootstrapField)
+            })
+        },
     })
 })
 
