@@ -3,20 +3,24 @@
 {{#block 'content'}}
   {{#each products}}
     <div class="card" style="width: 18rem;">
-      <img src="this.image" class="card-img-top">
+      <img src="{{this.image}}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title text-black">{{this.name}}</h5>
-        <p class="card-text">{{this.description}}</p>
-        <p class="card-text">{{this.cost}}</p>
+        {{!-- <p class="card-text">{{this.description}}</p> --}}
+        <p class="card-text">S${{this.cost}}</p>
         <div class="icons">
           <i class="fa-solid fa-cart-plus"></i>
-          <i class="fa-solid fa-pen-to-square" href="/products/{{this.id}}/update"></i>
-          <i class="fa-solid fa-trash" href="/products/{{this.id}}/delete" ></i>
+          <a href="/products/{{this.id}}/update">
+            <i class="fa-solid fa-pen-to-square" ></i>
+          </a>
+          <a href="/products/{{this.id}}/delete">
+            <i class="fa-solid fa-trash" ></i>
+          </a>
         </div>    
       </div>
     </div>
   {{/each}}
-<button type="button" href="/products/create" class="btn btn-outline-light">Add more products</button>
+  <a href="/products/create" class="btn btn-outline-dark mt-5">Add more products</a>
 {{/block}}
 
 {{/extends}}

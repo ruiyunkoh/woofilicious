@@ -23,8 +23,12 @@ router.get('/', async function (req, res) {
 
 //Create product
 
-router.get('/create', function (req, res) {
-  const productForm = createProductForm();
+router.get('/create', async function (req, res) {
+  const allTypes = await Type.fetchAll().map((type) => {
+    return [type.get('id'), type.get('name')];
+  });
+
+  const productForm = createProductForm(allTypes);
   res.render('products/create', {
     'form': productForm.toHTML(bootstrapField)
   })
