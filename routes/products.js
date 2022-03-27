@@ -7,7 +7,9 @@ const { bootstrapField, createProductForm } = require('../forms');
 const {Product} = require('../models')
 
 router.get('/', async function (req,res){    
-    let products = await Product.collection().fetch();
+    let products = await Product.collection().fetch({
+        withRelated:['type']
+    });
     res.render('products/index', {
         'products': products.toJSON() 
     })
@@ -23,7 +25,11 @@ router.get('/create', function(req, res) {
 });
 
 router.post('/create', function(req,res){
-    const productForm = createProductForm();
+    const allTypes = await Type.fetchAll().map((type) => {
+        return [type.get('id'), type.get('name')];
+    });
+
+    const productForm = createProductForm(allTypes);
     productForm.handle(req, {
         'success': async function(form) {
             const product = new Product();
@@ -53,14 +59,18 @@ router.get('/:product_id/update', async (req, res) => {
     }).fetch({
         require: true
     });
+    const allTypes = await Type.fetchAll().map((type)=>{
+        return [type.get('id'), type.get('name')];
+    })
 
-    const productForm = createProductForm();
+    const productForm = createProductForm(allTypes);
 
     // fill in the existing values
     productForm.fields.name.value = product.get('name');
     productForm.fields.cost.value = product.get('cost');
     productForm.fields.description.value = product.get('description');
     productForm.fields.cost.value = product.get('ingredient');
+    productForm.fields.category_id.value = product.get('type_id');
 
     res.render('products/update', {
         'form': productForm.toHTML(bootstrapField),
@@ -69,13 +79,17 @@ router.get('/:product_id/update', async (req, res) => {
 })
 
 router.post('/:product_id/update', async (req, res) => {
+    const allTypes = await Type.fetchAll().map((type)=>{
+        return [type.get('id'), type.get('name')];
+    })
+
     const product = await Product.where({
         'id': req.params.product_id
     }).fetch({
         require: true
     });
     
-    const productForm = createProductForm();
+    const productForm = createProductForm(allTypes);
     productForm.handle(req, {
         'success': async (form) => {
             product.set(form.data);
