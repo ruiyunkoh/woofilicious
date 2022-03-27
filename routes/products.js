@@ -9,7 +9,8 @@ const {
 
 const {
   Product,
-  Type
+  Type,
+  Size
 } = require('../models')
 
 router.get('/', async function (req, res) {
@@ -28,7 +29,9 @@ router.get('/create', async function (req, res) {
     return [type.get('id'), type.get('name')];
   });
 
-  const productForm = createProductForm(allTypes);
+  const allSizes = await Size.fetchAll().map(size => [size.get('id'), size.get('name')]);
+
+  const productForm = createProductForm(allTypes, allSizes);
   res.render('products/create', {
     'form': productForm.toHTML(bootstrapField)
   })
@@ -39,7 +42,9 @@ router.post('/create', async function (req, res) {
     return [type.get('id'), type.get('name')];
   });
 
-  const productForm = createProductForm(allTypes);
+  const allSizes = await Size.fetchAll().map(size => [size.get('id'), size.get('name')]);
+
+  const productForm = createProductForm(allTypes, allSizes);
   productForm.handle(req, {
     'success': async function (form) {
       const product = new Product();
@@ -48,7 +53,14 @@ router.post('/create', async function (req, res) {
       product.set('image', form.data.image);
       product.set('description', form.data.description);
       product.set('ingredient', form.data.ingredient);
+      product.set('type_id', form.data.type_id);
       await product.save();
+
+      if (form.data.sizes) {
+        let selectedSizes = form.data.sizes.split(',');
+        await product.sizes().attach(selectedSizes);
+      }
+
       res.redirect('/products');
     },
     'error': async function (form) {
@@ -67,13 +79,15 @@ router.get('/:product_id/update', async (req, res) => {
   const product = await Product.where({
     'id': productId
   }).fetch({
-    require: true
+    require: true,
+    withRelated: ['sizes']
   });
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
-  })
+  });
+  const allSizes = await Size.fetchAll().map(size => [size.get('id'), size.get('name')]);
 
-  const productForm = createProductForm(allTypes);
+  const productForm = createProductForm(allTypes, allSizes);
 
   // fill in the existing values
   productForm.fields.name.value = product.get('name');
@@ -82,6 +96,9 @@ router.get('/:product_id/update', async (req, res) => {
   productForm.fields.description.value = product.get('description');
   productForm.fields.ingredient.value = product.get('ingredient');
   productForm.fields.type_id.value = product.get('type');
+
+  let selectedSizes = await product.related('sizes').pluck('id');
+  productForm.fields.sizes.value = selectedSizes;
 
   res.render('products/update', {
     'form': productForm.toHTML(bootstrapField),
@@ -92,19 +109,34 @@ router.get('/:product_id/update', async (req, res) => {
 router.post('/:product_id/update', async (req, res) => {
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
-  })
+  });
+
+  const allSizes = await Size.fetchAll().map(size => [size.get('id'), size.get('name')]);
 
   const product = await Product.where({
     'id': req.params.product_id
   }).fetch({
-    require: true
+    require: true,
+    withRelated: ['sizes']
   });
 
-  const productForm = createProductForm(allTypes);
+  const productForm = createProductForm(allTypes, allSizes);
+
   productForm.handle(req, {
     'success': async (form) => {
-      product.set(form.data);
-      product.save();
+      let {
+        sizes,
+        ...productData
+      } = form.data;
+      product.set(productData);
+      await product.save();
+
+      let sizeIds = sizes.split(',');
+      let existingSizeIds = await product.related('sizes').pluck('id');
+      let toRemove = existingSizeIds.filter(id => sizeIds.includes(id) === false);
+      await product.sizes().detach(toRemove);
+      await product.sizes().attach(sizeIds);
+
       res.redirect('/products');
     },
     'error': async (form) => {
