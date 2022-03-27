@@ -32,7 +32,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgb(215, 200, 200);
+        background-color: rgb(169, 230, 230);
       }    
       .nav-link:hover{
         color: rgb(255,255,255)!important;
@@ -43,7 +43,7 @@
       .banner {
         position: relative;
         text-align: center;
-        color: white;
+        color: rgb(39, 39, 39);
       }
       .banner>img{
         height: calc(100vh - 80px);
@@ -51,7 +51,7 @@
       }
       .text {
         position: absolute;
-        top: 50%;
+        top: 20%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
@@ -59,7 +59,7 @@
         font-family: "Roboto Condensed", sans-serif;
       }
       .text>p{
-        max-width: 300px;
+        max-width: 450px;
         font-family: "Montserrat", sans-serif;
       }
 
@@ -81,7 +81,7 @@
       </nav>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         {{#block 'content'}}{{/block}}
     </div>
    
