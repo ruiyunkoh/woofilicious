@@ -14,5 +14,7 @@
    },
    "files.autoSave": "off",
    "workbench.colorTheme": "Visual Studio Dark",
-   "editor.defaultFormatter": "HookyQR.beautify"
+   "editor.defaultFormatter": "HookyQR.beautify",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }
