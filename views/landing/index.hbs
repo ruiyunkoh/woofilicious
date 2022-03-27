@@ -1,7 +1,16 @@
 {{#extends 'base'}}
 
 {{#block 'content'}}
-<h1>Welcome!</h1>
+<div class="banner">
+        <img alt="" src="https://corgicare.com/wp-content/uploads/why-do-corgis-eat-so-much.jpg.webp">
+        <div class="text">
+        <h1 v-bind:style="styleObject">Welcome to WOOFILICIOUS!</h1>
+        <p>Not sure of what food to feed your dog? 
+            Feel free to browse our selection of top quality dog food specially curated 
+            by Dog owners to Dog owners. 
+            </p>
+        </div>    
+</div>
 {{/block}}
 
 {{/extends}}

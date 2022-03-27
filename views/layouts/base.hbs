@@ -13,6 +13,11 @@
     <title>Woofilicious</title>
 
     <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&family=Roboto+Condensed:wght@700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap");
+
+      /*Navbar styling */
+
       #shopLogo > img{
         height: 80px;
         width: 60px;
@@ -27,6 +32,33 @@
       .nav-link:hover{
         color: rgb(255,255,255)!important;
       }
+
+      /*Home page styling*/
+
+      .banner {
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+      .banner>img{
+        height: calc(100vh - 80px);
+        width: 100%;
+      }
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .text>h1{
+        font-family: "Roboto Condensed", sans-serif;
+      }
+      .text>p{
+        max-width: 300px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+
     </style>
 
   </head>
@@ -37,9 +69,9 @@
         <div id="shopLogo">
             <img alt="" src="https://cdn-icons-png.flaticon.com/512/3248/3248199.png">
           </div>    
-          <a class="nav-link active mx-2 text-dark" >HOME</a>
-          <a class="nav-link mx-2 text-dark" >PRODUCTS</a>
-          <a class="nav-link mx-2 text-dark" >CONTACT US</a>
+          <a class="nav-link active mx-2 text-dark" href="/" >HOME</a>
+          <a class="nav-link mx-2 text-dark" href="/products/">PRODUCTS</a>
+          <a class="nav-link mx-2 text-dark" href="/contact">CONTACT US</a>
           
       </nav>
     </div>

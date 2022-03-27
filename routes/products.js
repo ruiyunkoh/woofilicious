@@ -6,7 +6,7 @@ const { bootstrapField, createProductForm } = require('../forms');
 
 const {Product} = require('../models')
 
-router.get('/', async (req,res)=>{    
+router.get('/', async function (req,res){    
     let products = await Product.collection().fetch();
     res.render('products/index', {
         'products': products.toJSON() 
@@ -15,17 +15,17 @@ router.get('/', async (req,res)=>{
 
 //Create product
 
-router.get('/create', async (req, res) => {
+router.get('/create', function(req, res) {
     const productForm = createProductForm();
     res.render('products/create',{
         'form': productForm.toHTML(bootstrapField)
     })
 });
 
-router.post('/create', async(req,res)=>{
+router.post('/create', function(req,res){
     const productForm = createProductForm();
     productForm.handle(req, {
-        'success': async (form) => {
+        'success': async function(form) {
             const product = new Product();
             product.set('name', form.data.name);
             product.set('cost', form.data.cost);
@@ -35,7 +35,7 @@ router.post('/create', async(req,res)=>{
             await product.save();
             res.redirect('/products');
         },
-        'error': async (form) => {
+        'error': async function(form){
             res.render('products/create', {
                 'form': form.toHTML(bootstrapField)
             })

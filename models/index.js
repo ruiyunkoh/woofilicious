@@ -4,4 +4,8 @@ const Product = bookshelf.model('Product', {
     tableName:'products'
 });
 
-module.exports = { Product };
+const Type = bookshelf.model('Type',{
+    tableName: 'types'
+});
+
+module.exports = { Product, Type };

@@ -29,37 +29,37 @@ const createProductForm = () => {
         'name': fields.string({
             'required': true,
             'errorAfterField': true,
-            cssClasses: {
+            'cssClasses': {
                 label: ['form-label']
             }
         }),
         'cost': fields.string({
-            required: true,
-            errorAfterField: true,
-            cssClasses: {
-                label: ['form-label']
+            'required': true,
+            'errorAfterField': true,
+            'cssClasses': {
+                'label': ['form-label']
             },
             'validators':[validators.integer()]
         }),
         'image': fields.string({
-            required: true,
-            errorAfterField: true,
-            cssClasses: {
-                label: ['form-label']
+            'required': true,
+            'errorAfterField': true,
+            'cssClasses': {
+                'label': ['form-label']
             }
         }),        
         'description': fields.string({
-            required: true,
-            errorAfterField: true,
-            cssClasses: {
-                label: ['form-label']
+            'required': true,
+            'errorAfterField': true,
+            'cssClasses': {
+                'label': ['form-label']
             }
         }),
         'ingredient': fields.string({
-            required: true,
-            errorAfterField: true,
-            cssClasses: {
-                label: ['form-label']
+            'required': true,
+            'errorAfterField': true,
+            'cssClasses': {
+                'label': ['form-label']
             }
         }),
     })
