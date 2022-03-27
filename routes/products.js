@@ -78,9 +78,10 @@ router.get('/:product_id/update', async (req, res) => {
   // fill in the existing values
   productForm.fields.name.value = product.get('name');
   productForm.fields.cost.value = product.get('cost');
+  productForm.fields.image.value = product.get('image');
   productForm.fields.description.value = product.get('description');
-  productForm.fields.cost.value = product.get('ingredient');
-  productForm.fields.category_id.value = product.get('type_id');
+  productForm.fields.ingredient.value = product.get('ingredient');
+  productForm.fields.type_id.value = product.get('type');
 
   res.render('products/update', {
     'form': productForm.toHTML(bootstrapField),
