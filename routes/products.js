@@ -82,6 +82,7 @@ router.get('/:product_id/update', async (req, res) => {
     'id': productId
   }).fetch({
     require: true,
+    withRelated: ['types'],
     withRelated: ['sizes']
   });
   const allTypes = await Type.fetchAll().map((type) => {
@@ -98,7 +99,7 @@ router.get('/:product_id/update', async (req, res) => {
   productForm.fields.description.value = product.get('description');
   productForm.fields.ingredient.value = product.get('ingredient');
   productForm.fields.source.value = product.get('source');
-  productForm.fields.type_id.value = product.get('type');
+  productForm.fields.type_id.value = product.get('type_id');
 
   let selectedSizes = await product.related('sizes').pluck('id');
   productForm.fields.sizes.value = selectedSizes;

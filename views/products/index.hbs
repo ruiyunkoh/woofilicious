@@ -1,9 +1,10 @@
 {{#extends 'base'}}
 
 {{#block 'content'}}
-  {{#each products}}
-    <div class="products-holder row mt-3">
-      <div class="card" style="width: 18rem;">
+  <h1>Our Products</h1>
+  <div class="products-holder mt-3">
+    {{#each products}}    
+      <div class="card mx-2 mb-3" style="width: 18rem;">
         <img src="{{this.image}}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title text-black">{{this.name}}</h5>
@@ -20,9 +21,9 @@
           </div>    
         </div>
       </div>
-    </div>
-  {{/each}}
-  <div class="create-btn">
+    {{/each}}
+  </div>
+  <div class="create-btn mb-5">
     <a href="/products/create" class="btn btn-outline-dark mt-5">Add more products</a>
   </div>
 {{/block}}
