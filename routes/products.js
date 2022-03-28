@@ -60,6 +60,7 @@ router.post('/create', async function (req, res) {
         let selectedSizes = form.data.sizes.split(',');
         await product.sizes().attach(selectedSizes);
       }
+      req.flash("success_messages", `New Product ${product.get('name')} has been created`)
 
       res.redirect('/products');
     },
@@ -137,6 +138,8 @@ router.post('/:product_id/update', async (req, res) => {
       await product.sizes().detach(toRemove);
       await product.sizes().attach(sizeIds);
 
+      req.flash("success_messages", `Product ${product.get('name')} has been updated`)
+
       res.redirect('/products');
     },
     'error': async (form) => {
@@ -172,6 +175,9 @@ router.post('/:product_id/delete', async (req, res) => {
     require: true
   });
   await product.destroy();
+
+  req.flash("success_messages", `Product has been deleted`)
+
   res.redirect('/products')
 })
 
