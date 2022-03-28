@@ -65,6 +65,13 @@ const createProductForm = (types, sizes) => {
         'label': ['form-label']
       }
     }),
+    'source': fields.string({
+      'required': true,
+      'errorAfterField': true,
+      'cssClasses': {
+        'label': ['form-label']
+      }
+    }),
     'type_id': fields.string({
       'label': 'Type',
       'required': true,

@@ -53,6 +53,7 @@ router.post('/create', async function (req, res) {
       product.set('image', form.data.image);
       product.set('description', form.data.description);
       product.set('ingredient', form.data.ingredient);
+      product.set('source', form.data.source);
       product.set('type_id', form.data.type_id);
       await product.save();
 
@@ -96,6 +97,7 @@ router.get('/:product_id/update', async (req, res) => {
   productForm.fields.image.value = product.get('image');
   productForm.fields.description.value = product.get('description');
   productForm.fields.ingredient.value = product.get('ingredient');
+  productForm.fields.source.value = product.get('source');
   productForm.fields.type_id.value = product.get('type');
 
   let selectedSizes = await product.related('sizes').pluck('id');
