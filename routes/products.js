@@ -15,12 +15,15 @@ const {
 
 router.get('/', async function (req, res) {
   let products = await Product.collection().fetch({
-    withRelated: ['type']
+    withRelated: ['type'],
+    withRelated: ['sizes']
   });
+  // console.log(products.toJSON());
   res.render('products/index', {
     'products': products.toJSON()
   })
 });
+
 
 //Create product
 
@@ -82,7 +85,7 @@ router.get('/:product_id/update', async (req, res) => {
     'id': productId
   }).fetch({
     require: true,
-    withRelated: ['types'],
+    withRelated: ['type'],
     withRelated: ['sizes']
   });
   const allTypes = await Type.fetchAll().map((type) => {
@@ -183,5 +186,24 @@ router.post('/:product_id/delete', async (req, res) => {
 
   res.redirect('/products')
 })
+
+//Product details
+
+router.get('/:product_id/details', async (req, res) => {
+
+  const product = await Product.where({
+    'id': req.params.product_id
+  }).fetch({
+    require: true,
+    withRelated: ['type'],
+    withRelated: ['sizes']
+  });
+  console.log(product.toJSON());
+
+  res.render('products/details', {
+    'product': product.toJSON()
+  })
+
+});
 
 module.exports = router;

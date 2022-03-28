@@ -1,7 +1,29 @@
 {{#extends 'base'}}
 
 {{#block 'content'}}
-
+<div class="form-holder">
+  <div class="card mt-5 mb-4" style="max-width: 800px;">
+  <div class="row g-0">
+    <div class="img-holder col-md-4">
+      <img src="{{product.image}}" class="img-fluid rounded-start">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1 class="detail-title">{{product.name}}</h1>
+        <h5 class="card-text">${{product.cost}}</h5>
+        <span class="badge bg-secondary me-2">{{product.sizes.0.name}}</span>
+        <span class="badge bg-dark me-2">{{product.sizes.1.name}}</span>
+        <span class="badge bg-info">{{product.sizes.2.name}}</span>
+        <h5 class="mt-3">Product Information</h5>
+        <p class="card-text">{{product.description}}</p>
+        <p class="card-text"><b>Ingredients:</b> {{product.ingredient}}</p>
+        <p class="card-text"><b>Type:</b> {{product.type.name}}</p>
+        <p class="card-text"><b>Source:</b> {{product.source}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 {{/block}}
 
 {{/extends}}
