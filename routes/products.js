@@ -15,8 +15,7 @@ const {
 
 router.get('/', async function (req, res) {
   let products = await Product.collection().fetch({
-    withRelated: ['type'],
-    withRelated: ['sizes']
+    withRelated: ['type', 'sizes'],
   });
   // console.log(products.toJSON());
   res.render('products/index', {
@@ -85,8 +84,7 @@ router.get('/:product_id/update', async (req, res) => {
     'id': productId
   }).fetch({
     require: true,
-    withRelated: ['type'],
-    withRelated: ['sizes']
+    withRelated: ['type', 'sizes'],
   });
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
@@ -195,10 +193,10 @@ router.get('/:product_id/details', async (req, res) => {
     'id': req.params.product_id
   }).fetch({
     require: true,
-    withRelated: ['type'],
-    withRelated: ['sizes']
+    withRelated: ['type', 'sizes'],
   });
-  console.log(product.toJSON());
+
+  // console.log(product.toJSON());
 
   res.render('products/details', {
     'product': product.toJSON()
