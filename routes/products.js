@@ -13,6 +13,10 @@ const {
   Size
 } = require('../models')
 
+const {
+  checkIfAuthenticated
+} = require('../middlewares');
+
 router.get('/', async function (req, res) {
   let products = await Product.collection().fetch({
     withRelated: ['type', 'sizes'],
@@ -26,7 +30,7 @@ router.get('/', async function (req, res) {
 
 //Create product
 
-router.get('/create', async function (req, res) {
+router.get('/create', checkIfAuthenticated, async function (req, res) {
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
   });
@@ -39,7 +43,7 @@ router.get('/create', async function (req, res) {
   })
 });
 
-router.post('/create', async function (req, res) {
+router.post('/create', checkIfAuthenticated, async function (req, res) {
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
   });
@@ -77,7 +81,7 @@ router.post('/create', async function (req, res) {
 
 //Update product
 
-router.get('/:product_id/update', async (req, res) => {
+router.get('/:product_id/update', checkIfAuthenticated, async (req, res) => {
   // retrieve the product
   const productId = req.params.product_id
   const product = await Product.where({
@@ -111,7 +115,7 @@ router.get('/:product_id/update', async (req, res) => {
   })
 })
 
-router.post('/:product_id/update', async (req, res) => {
+router.post('/:product_id/update', checkIfAuthenticated, async (req, res) => {
   const allTypes = await Type.fetchAll().map((type) => {
     return [type.get('id'), type.get('name')];
   });
@@ -157,7 +161,7 @@ router.post('/:product_id/update', async (req, res) => {
 
 // Delete product
 
-router.get('/:product_id/delete', async (req, res) => {
+router.get('/:product_id/delete', checkIfAuthenticated, async (req, res) => {
 
   const product = await Product.where({
     'id': req.params.product_id
@@ -171,7 +175,7 @@ router.get('/:product_id/delete', async (req, res) => {
 
 });
 
-router.post('/:product_id/delete', async (req, res) => {
+router.post('/:product_id/delete', checkIfAuthenticated, async (req, res) => {
   // fetch the product that we want to delete
   const product = await Product.where({
     'id': req.params.product_id

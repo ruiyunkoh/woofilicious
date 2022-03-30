@@ -44,6 +44,9 @@
       .nav-link:hover{
         color: rgb(255,255,255)!important;
       }
+      .greet{
+        font-family: "Roboto Condensed", sans-serif;
+      }
 
       /*Home page styling*/
 
@@ -144,9 +147,18 @@
           <a class="nav-link mx-2 text-dark" href="/contact">CONTACT US</a>
           <a class="nav-link mx-2 text-dark" href="/users/login">SIGN IN</a>
           <a class="nav-link mx-2 text-dark" href="/users/profile">PROFILE</a>
-      </nav>
-    </div>
+          <div class="greet">
+          {{#if user}}
+          Hi, {{user.username}}!
 
+          {{else}}
+          Hi There! Please sign in.
+          
+          {{/if}}
+        </div>
+      </nav>      
+    </div>
+    
     <div class="container-fluid">
       {{#if success_messages }}        
             {{#each success_messages}}
