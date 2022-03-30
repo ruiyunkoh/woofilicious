@@ -147,10 +147,43 @@ const createLoginForm = () => {
   })
 };
 
+const createSearchForm = (types, sizes) => {
+  return forms.create({
+    'source': fields.string({
+      required: false,
+      errorAfterField: true,
+      cssClasses: {
+        label: ['form-label']
+      },
+
+    }),
+    'type_id': fields.string({
+      label: 'Type',
+      required: false,
+      errorAfterField: true,
+      cssClasses: {
+        label: ['form-label']
+      },
+      widget: widgets.select(),
+      choices: types
+    }),
+    'sizes': fields.string({
+      required: false,
+      errorAfterField: true,
+      cssClasses: {
+        label: ['form-label']
+      },
+      widget: widgets.multipleSelect(),
+      choices: sizes
+    }),
+  })
+}
+
 
 module.exports = {
   createProductForm,
   createRegistrationForm,
   createLoginForm,
+  createSearchForm,
   bootstrapField
 };

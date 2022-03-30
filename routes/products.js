@@ -4,7 +4,8 @@ const router = express.Router();
 // import in the Forms
 const {
   bootstrapField,
-  createProductForm
+  createProductForm,
+  createSearchForm
 } = require('../forms');
 
 const {
@@ -18,13 +19,72 @@ const {
 } = require('../middlewares');
 
 router.get('/', async function (req, res) {
-  let products = await Product.collection().fetch({
-    withRelated: ['type', 'sizes'],
-  });
-  // console.log(products.toJSON());
-  res.render('products/index', {
-    'products': products.toJSON()
+  const allTypes = await Type.fetchAll().map((type) => {
+    return [type.get('id'), type.get('name')];
   })
+  allTypes.unshift([0, '----']);
+
+  const allSizes = await Size.fetchAll().map(size => [size.get('id'), size.get('name')]);
+
+  let searchForm = createSearchForm(allTypes, allSizes);
+  let q = Product.collection();
+
+  searchForm.handle(req, {
+    'empty': async (form) => {
+      let products = await q.fetch({
+        withRelated: ['type', 'sizes']
+      })
+      res.render('products/index', {
+        'products': products.toJSON(),
+        'form': form.toHTML(bootstrapField)
+      })
+    },
+    'error': async (form) => {
+      let products = await q.fetch({
+        withRelated: ['type', 'sizes']
+      })
+      res.render('products/index', {
+        'products': products.toJSON(),
+        'form': form.toHTML(bootstrapField)
+      })
+    },
+    'success': async (form) => {
+      // if (form.data.type_id && form.data.type_id != "0") {
+      //   q = q.query('join', 'types', 'type_id', 'types.id')
+      //     .where('types.name', 'like', '%' + req.query.type + '%')
+      // }
+
+      if (form.data.type_id && form.data.type_id != "0") {
+        q = q.where('type_id', '=', form.data.type_id);
+      }
+
+      if (form.data.source) {
+        q = q.where('source', 'like', '%' + req.query.source + '%');
+      }
+
+      if (form.data.sizes) {
+        q.query('join', 'products_sizes', 'products.id', 'product_id')
+          .where('size_id', 'in', form.data.sizes.split(','))
+      }
+
+      let products = await q.fetch({
+        withRelated: ['type', 'sizes']
+      })
+      res.render('products/index', {
+        'products': products.toJSON(),
+        'form': form.toHTML(bootstrapField)
+      })
+    }
+  })
+
+  // let products = await Product.collection().fetch({
+  //   withRelated: ['type', 'sizes'],
+  // });
+  // // console.log(products.toJSON());
+  // res.render('products/index', {
+  //   'products': products.toJSON(),
+  //   'form': form.toHTML(bootstrapField)
+  // })
 });
 
 
