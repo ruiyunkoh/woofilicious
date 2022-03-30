@@ -6,6 +6,7 @@
   <form method="POST" class="row">
       {{{form}}}
       <input type="submit" value="Sign Up" class="create-btn btn-outline-secondary col-1 my-3"/>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}"/>
   </form>
 </div>
 {{/block}}
