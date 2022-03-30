@@ -2,16 +2,19 @@
 
 {{#block 'content'}}
   <h1>Login to your Account</h1>
-  <div class="text">
-    <h5>Please login with your account below!</h5>
-    <div class="form-holder">
+  
+    <div class="form-holder mt-5">
       <form method="POST" class="row">
           {{{form}}}
-          <input type="submit" value="Log In" class="create-btn btn-outline-secondary col-1 my-3"/>
+          <input type="submit" value="Login" class="create-btn btn-outline-secondary col-1 my-3"/>
       </form>
     </div>
+  <div class="register">
+    <h5>No Account? Please register.</h5>  
   </div>
-
+  <div class="register-btn">
+    <a href="/users/register" class="btn btn-info btn-sm ">Register an account</a>
+  </div>
 {{/block}}
 
 {{/extends}}
