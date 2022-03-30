@@ -24,9 +24,14 @@ const Size = bookshelf.model('Size', {
   }
 });
 
+const User = bookshelf.model('User', {
+  tableName: 'users'
+});
+
 
 module.exports = {
   Product,
   Type,
-  Size
+  Size,
+  User
 };

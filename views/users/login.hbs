@@ -1,0 +1,17 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+  <h1>Login to your Account</h1>
+  <div class="text">
+    <h5>Please login with your account below!</h5>
+    <div class="form-holder">
+      <form method="POST" class="row">
+          {{{form}}}
+          <input type="submit" value="Log In" class="create-btn btn-outline-secondary col-1 my-3"/>
+      </form>
+    </div>
+  </div>
+
+{{/block}}
+
+{{/extends}}
