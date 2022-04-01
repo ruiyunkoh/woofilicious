@@ -39,7 +39,8 @@ The e-commerce website aims to target the growing market size of dog owners, by 
 
   ## 2.2 Features
   
-  You may refer to the uploaded document for screenshots of the e-commerce website features: 
+  You may refer to the uploaded document for screenshots of the e-commerce website features: [features.pdf](https://github.com/ruiyunkoh/woofilicious/files/8400097/features.pdf)
+
   
   |  #  | Feature Description    | Fig ref           |
   | :---|:---------------------- |:----------------- |
