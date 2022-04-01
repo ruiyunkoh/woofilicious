@@ -49,10 +49,6 @@ router.get('/', async function (req, res) {
       })
     },
     'success': async (form) => {
-      // if (form.data.type_id && form.data.type_id != "0") {
-      //   q = q.query('join', 'types', 'type_id', 'types.id')
-      //     .where('types.name', 'like', '%' + req.query.type + '%')
-      // }
 
       if (form.data.type_id && form.data.type_id != "0") {
         q = q.where('type_id', '=', form.data.type_id);
@@ -77,14 +73,6 @@ router.get('/', async function (req, res) {
     }
   })
 
-  // let products = await Product.collection().fetch({
-  //   withRelated: ['type', 'sizes'],
-  // });
-  // // console.log(products.toJSON());
-  // res.render('products/index', {
-  //   'products': products.toJSON(),
-  //   'form': form.toHTML(bootstrapField)
-  // })
 });
 
 

@@ -165,17 +165,12 @@
 
   <body>
     <div class ="container-fluid">
-      <nav class="nav sticky-top"> 
+      <nav class="nav navbar-expand-lg sticky-top"> 
         <div id="shopLogo">
-            <img alt="" src="https://cdn-icons-png.flaticon.com/512/3248/3248199.png">
-          </div>    
-          <a class="nav-link active mx-2 text-dark" href="/" >HOME</a>
-          <a class="nav-link mx-2 text-dark" href="/products/">PRODUCTS</a>
-          <a class="nav-link mx-2 text-dark" href="/contact">CONTACT US</a>
-          <a class="nav-link mx-2 text-dark" href="/users/login">SIGN IN</a>
-          <a class="nav-link mx-2 text-dark" href="/users/profile">PROFILE</a>
-          <a class="nav-link mx-2 text-dark" href="/cart/">CART</a>
-          <div class="greet">
+          <img alt="" src="https://cdn-icons-png.flaticon.com/512/3248/3248199.png">
+        </div>
+
+        <div class="greet ms-5">
           {{#if user}}
           Hi, {{user.username}}!
 
@@ -184,6 +179,31 @@
           
           {{/if}}
         </div>
+
+        <!-- Collapse button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+        <span><i class="fas fa-bars collapse-bar"></i></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-nav ms-5 mb-2 mb-lg-0">
+          <a class="nav-link active mx-2 text-dark" href="/" >HOME</a>
+          <a class="nav-link mx-2 text-dark" href="/products/">PRODUCTS</a>
+          <a class="nav-link mx-2 text-dark" href="/contact">CONTACT US</a>
+          <a class="nav-link mx-2 text-dark" href="/cart/">YOUR CART</a>
+          <a class="nav-link mx-2 text-dark" href="/users/login">SIGN IN</a>
+          <a class="nav-link mx-2 text-dark" href="/users/profile">PROFILE</a>
+          </div>
+        </div>
+        
       </nav>      
     </div>
     
