@@ -6,7 +6,7 @@ const CartServices = require('../services/cart_services');
 
 router.get('/', checkIfLogin, async(req,res)=>{
   let cart = new CartServices(req.session.user.id);
-  res.render('cart/index', {
+  res.render('carts/index', {
     'shoppingCart': (await cart.getCart()).toJSON()
     })
 });
@@ -32,4 +32,4 @@ router.post('/:product_id/quantity/update', checkIfLogin, async(req,res)=>{
   res.redirect('/cart/');
 });
 
-
+module.exports = router;
