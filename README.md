@@ -41,27 +41,21 @@ The e-commerce website aims to target the growing market size of dog owners, by 
   
   You may refer to the uploaded document for screenshots of the e-commerce website features: 
   
-  |  #  | Feature Description    | Fig ref  |
-  | :---|:---------------------- |:-------- |
+  |  #  | Feature Description    | Fig ref           |
+  | :---|:---------------------- |:----------------- |
   |1| The website is created on a Single Page Application. | |
   |2| The main feature of this webpage would be the Products page - which displays all dog food products listed. |Fig 2|
   |3| The products page has a search and filter function based on various criterias, up to the users. |Fig 2|
   |4| Every product is featured within a card format, with its information summarised. Each card has its own Add to Cart, Edit and Delete buttons. The add to Cart feature is only available to users logged in. The Edit and Delete product feature is only available to the show owner (admin). |Fig 2|
   |5| Owner can create posting by selecting the 'Add more products' button at the bottom of products page. A posting creation form will appear. Form validation exists to ensure all fields are filled in before the form is successfully submitted. Upon successful submission, users are redirected back to 'Products' page, with an alert to inform on the submission. |Fig 3|
-  |6| Owner can edit individual postings by selecting the edit icon within the card. This brings owner to a form page (with all existing fields filled up). 
-      Form validation exists to ensure all fields are filled in before the form is successfully submitted. 
-      Upon successful Edit, users are redirected back to 'Products' page, with an alert to inform on the Edit. |Fig 4|
+  |6| Owner can edit individual postings by selecting the edit icon within the card. This brings owner to a form page (with all existing fields filled up). Form validation exists to ensure all fields are filled in before the form is successfully submitted. Upon successful Edit, users are redirected back to 'Products' page, with an alert to inform on the Edit. |Fig 4|
   |7| Users can click on the title of individual posting to be redirected to a page showing detailed product information. An add to cart button is also available in this page. |Fig 5|
-  |8| Owner can delete individual posting. This brings the owner to a confirmation page to prevent accidental deletion. Upon successful Deletion,
-      Owner is redirected back to 'Products' page, with an alert to inform on the Deletion. Cancellation of this process will also redirect Owner back to the Products page. |Fig 6|
+  |8| Owner can delete individual posting. This brings the owner to a confirmation page to prevent accidental deletion. Upon successful Deletion, Owner is redirected back to 'Products' page, with an alert to inform on the Deletion. Cancellation of this process will also redirect Owner back to the Products page. |Fig 6|
   |9| Upon signing in, the website would greet the user by their username. Users are also able to view their profile (which is not available if they are not logged in. 
       |Fig 7|
   |10| E-commerce website features a log in page and form. Within the log in page, it also has a button to direct new users to register if they do not have an account. |Fig 8|
-  |11| New users can create an account by clicking on the register button. 
-       Form validation exists to ensure all fields are filled in and 'Password' and 'Confirm Password' fields matches, before the form is successfully submitted. |Fig 9|
-  |12| Logged in users are able to add products into the shopping cart. Shopping cart shows products added in a list format, for each product. 
-       Users are able to amend product quantity and remove product from cart. 
-       Finally, check out button exists to redirect users to payment gateway. |Fig 10|
+  |11| New users can create an account by clicking on the register button. Form validation exists to ensure all fields are filled in and 'Password' and 'Confirm Password' fields matches, before the form is successfully submitted. |Fig 9|
+  |12| Logged in users are able to add products into the shopping cart. Shopping cart shows products added in a list format, for each product. Users are able to amend product quantity and remove product from cart. Finally, check out button exists to redirect users to payment gateway. |Fig 10|
   |13| Website is mobile responsive. |Fig 11|
   
 # 3. Implementation
