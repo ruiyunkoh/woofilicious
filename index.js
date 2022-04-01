@@ -76,12 +76,14 @@ const landingRoutes = require('./routes/landing');
 const productRoutes = require('./routes/products');
 const userRoutes = require('./routes/users');
 const cartRoutes = require('./routes/shoppingCart');
+const checkoutRoutes = require('./routes/checkout');
 
 async function main() {
   app.use('/', landingRoutes);
   app.use('/products', productRoutes);
   app.use('/users', userRoutes);
   app.use('/cart', cartRoutes);
+  app.use('/checkout', checkoutRoutes);
 }
 
 main();
