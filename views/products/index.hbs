@@ -2,33 +2,35 @@
 
 {{#block 'content'}}
   <h1>Our Products</h1>
-  <div class="form-holder">
-    <form method="GET">
-    {{{form}}}
-      <input type="submit" class="mb-3 mt-3 btn btn-sm btn-outline-dark" value="Search"/>
-    </form>
-  </div>
-  <div class="products-holder mt-3">
-    {{#each products}}    
-      <div class="card mx-2 mb-3" style="width: 18rem;">
-        <img src="{{this.image}}" class="card-img-top">
-        <div class="card-body">
-          <a href="/products/{{this.id}}/details" class="card-title text-dark">{{this.name}}</a>          
-          <p class="card-text">S${{this.cost}}</p>
-          <div class="icons">
-            <a href="/cart/{{this.id}}/add">
-             <i class="fa-solid fa-cart-plus"></i>
-            </a>
-            <a href="/products/{{this.id}}/update">
-              <i class="fa-solid fa-pen-to-square" ></i>
-            </a>
-            <a href="/products/{{this.id}}/delete">
-              <i class="fa-solid fa-trash" ></i>
-            </a>
-          </div>    
+  <div class="pdtpage-holder">
+    <div class="form-holder">
+      <form method="GET">
+      {{{form}}}
+        <input type="submit" class="mb-3 mt-3 btn btn-sm btn-outline-dark" value="Search"/>
+      </form>
+    </div>
+    <div class="products-holder mt-3">
+      {{#each products}}    
+        <div class="card mx-2 mb-3" style="width: 18rem;">
+          <img src="{{this.image}}" class="card-img-top">
+          <div class="card-body">
+            <a href="/products/{{this.id}}/details" class="card-title text-dark">{{this.name}}</a>          
+            <p class="card-text">S${{this.cost}}</p>
+            <div class="icons">
+              <a href="/cart/{{this.id}}/add">
+              <i class="fa-solid fa-cart-plus"></i>
+              </a>
+              <a href="/products/{{this.id}}/update">
+                <i class="fa-solid fa-pen-to-square" ></i>
+              </a>
+              <a href="/products/{{this.id}}/delete">
+                <i class="fa-solid fa-trash" ></i>
+              </a>
+            </div>    
+          </div>
         </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    </div>
   </div>
   <div class="create-btn mb-5">
     <a href="/products/create" class="btn btn-outline-dark mt-5">Add more products</a>
