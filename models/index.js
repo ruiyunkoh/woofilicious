@@ -25,7 +25,10 @@ const Size = bookshelf.model('Size', {
 });
 
 const User = bookshelf.model('User', {
-  tableName: 'users'
+  tableName: 'users',
+  cartItems(){
+    return this.hasMany('CartItem');
+  }
 });
 
 const CartItem = bookshelf.model('CartItem', {

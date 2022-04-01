@@ -16,7 +16,7 @@ const getCartItemByUserAndProduct = async (userId, productId) => {
     'product_id': productId
   }).fetch({
     require: false,
-    withRelated: ['product', 'product.type']
+    // withRelated: ['product', 'product.type']
     });
 };
 

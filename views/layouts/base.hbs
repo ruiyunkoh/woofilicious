@@ -138,9 +138,20 @@
         display: flex;
         justify-content: center;
       }
-      .logout-btn{
+      .redirect-btn{
         display: flex;
         justify-content: center;
+      }
+
+      /*shopping cart styling*/
+      .list-group{
+        max-width: 800px !important;
+      }
+      .list-group-item>h4{
+        font-family: "Roboto Condensed", sans-serif;
+      }
+      .list-group-item>h5{
+        font-family: "Montserrat", sans-serif;
       }
 
     </style>
@@ -158,6 +169,7 @@
           <a class="nav-link mx-2 text-dark" href="/contact">CONTACT US</a>
           <a class="nav-link mx-2 text-dark" href="/users/login">SIGN IN</a>
           <a class="nav-link mx-2 text-dark" href="/users/profile">PROFILE</a>
+          <a class="nav-link mx-2 text-dark" href="/cart/">CART</a>
           <div class="greet">
           {{#if user}}
           Hi, {{user.username}}!
