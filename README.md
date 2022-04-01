@@ -46,11 +46,8 @@ The e-commerce website aims to target the growing market size of dog owners, by 
   |1| The website is created on a Single Page Application. | |
   |2| The main feature of this webpage would be the Products page - which displays all dog food products listed. |Fig 2|
   |3| The products page has a search and filter function based on various criterias, up to the users. |Fig 2|
-  |4| Every product is featured within a card format, with its information summarised. Each card has its own Add to Cart, Edit and Delete buttons. 
-      The add to Cart feature is only available to users logged in. The Edit and Delete product feature is only available to the show owner (admin).  |Fig 2|
-  |5| Owner can create posting by selecting the 'Add more products' button at the bottom of products page. A posting creation form will appear. 
-      Form validation exists to ensure all fields are filled in before the form is successfully submitted. 
-      Upon successful submission, users are redirected back to 'Products' page, with an alert to inform on the submission. |Fig 3|
+  |4| Every product is featured within a card format, with its information summarised. Each card has its own Add to Cart, Edit and Delete buttons. The add to Cart feature is only available to users logged in. The Edit and Delete product feature is only available to the show owner (admin). |Fig 2|
+  |5| Owner can create posting by selecting the 'Add more products' button at the bottom of products page. A posting creation form will appear. Form validation exists to ensure all fields are filled in before the form is successfully submitted. Upon successful submission, users are redirected back to 'Products' page, with an alert to inform on the submission. |Fig 3|
   |6| Owner can edit individual postings by selecting the edit icon within the card. This brings owner to a form page (with all existing fields filled up). 
       Form validation exists to ensure all fields are filled in before the form is successfully submitted. 
       Upon successful Edit, users are redirected back to 'Products' page, with an alert to inform on the Edit. |Fig 4|
