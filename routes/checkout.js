@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   for (let item of items) {
       const lineItem = {
           'name': item.related('product').get('name'),
-          'amount': item.related('product').get('cost'),
+          'amount': item.related('product').get('cost') * 100,
           'quantity': item.get('quantity'),
           'currency': 'SGD'
       }
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
   const payment = {
       payment_method_types: ['card'],
       line_items: lineItems,
-      success_url: process.env.STRIPE_SUCCESS_URL + '?sessionId={CHECKOUT_SESSION_ID}',
+      success_url: process.env.STRIPE_SUCCESS_URL + '{CHECKOUT_SESSION_ID}',
       cancel_url: process.env.STRIPE_ERROR_URL,
       metadata: {
           'orders': metaData
