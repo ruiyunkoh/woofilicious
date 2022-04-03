@@ -18,14 +18,16 @@
             <p class="card-text">S${{this.cost}}</p>
             <div class="icons">
               <a href="/cart/{{this.id}}/add">
-              <i class="fa-solid fa-cart-plus"></i>
+                <i class="fa-solid fa-cart-plus"></i>
               </a>
+              {{#if (isAdmin ../user)}}
               <a href="/products/{{this.id}}/update">
                 <i class="fa-solid fa-pen-to-square" ></i>
               </a>
               <a href="/products/{{this.id}}/delete">
                 <i class="fa-solid fa-trash" ></i>
               </a>
+              {{/if}}
             </div>    
           </div>
         </div>
