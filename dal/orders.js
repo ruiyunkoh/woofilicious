@@ -79,11 +79,9 @@ async function createOrderAndOrderItems(userId, cartItems) {
   await order.save();
 
   const orderId = order.get('id');
-  // console.log('created orderId', orderId);
 
   await Promise.all(cartItems.map((item) => {
     createOrderItems(orderId, item.productId, item.quantity);
-    // console.log('created order item: productId', item.productId, 'quantity', item.quantity);
   }));
 
   return order;
@@ -100,7 +98,6 @@ function updateStatus(orderId, newStatus) {
     method: 'update',
     require: true
   }).then((resolve) => {
-    console.log(`Resolved with ${resolve}`);
     return true
   }, (err) => {
     // Catch the error with Model that returns this even though update was successful

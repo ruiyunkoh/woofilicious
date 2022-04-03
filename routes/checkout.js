@@ -65,7 +65,6 @@ router.get('/success/:sessionId', async (req, res) => {
         'quantity': item.get('quantity')
       }
     });
-    // console.log(formattedCartItems);
 
     // Create order for user + 1 order_item per cart_item
     await createOrderAndOrderItems(userId, formattedCartItems);

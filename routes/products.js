@@ -248,8 +248,6 @@ router.get('/:product_id/details', async (req, res) => {
     withRelated: ['type', 'sizes'],
   });
 
-  // console.log(product.toJSON());
-
   res.render('products/details', {
     'product': product.toJSON()
   })
