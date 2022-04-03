@@ -15,8 +15,8 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db) {
-  return db.addForeignKey('cart_items', 'products', 'cart_items_product_fk', {
-    'product_id': 'id'
+  return db.addForeignKey('orders', 'users', 'order_user_fk', {
+    'user_id': 'id'
   }, {
     'onDelete': 'CASCADE',
     'onUpdate': 'RESTRICT'
@@ -24,7 +24,7 @@ exports.up = function (db) {
 };
 
 exports.down = function (db, callback) {
-  return db.removeForeignKey('cart_items', 'cart_items_product_fk', callback);
+  db.removeForeignKey('orders', 'order_user_fk', callback);
 };
 
 exports._meta = {

@@ -27,7 +27,11 @@
 </div>
 
 <div class="redirect-btn">
-  <a href="/checkout/" class="btn btn-sm btn-outline-info my-3">Checkout</a>
+  {{#if numCartSize includeZero=false}}
+    <a href="/checkout/" class="btn btn-sm btn-outline-info my-3">Checkout</a>
+  {{else}}
+    <a class="btn btn-sm btn-outline-secondary my-3 disabled">Checkout</a>
+  {{/if}}
 </div>
 
 {{/block}}

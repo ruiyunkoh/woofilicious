@@ -26,15 +26,39 @@ const Size = bookshelf.model('Size', {
 
 const User = bookshelf.model('User', {
   tableName: 'users',
-  cartItems(){
+  cartItems() {
     return this.hasMany('CartItem');
+  },
+  orders() {
+    return this.hasMany('Order');
   }
 });
 
 const CartItem = bookshelf.model('CartItem', {
   tableName: 'cart_items',
   product() {
-      return this.belongsTo('Product')
+    return this.belongsTo('Product')
+  }
+});
+
+const Order = bookshelf.model('Order', {
+  tableName: 'orders',
+  hasTimestamps: true,
+  user() {
+    return this.belongsTo('User')
+  },
+  orderItems() {
+    return this.hasMany('OrderItem');
+  }
+});
+
+const OrderItem = bookshelf.model('OrderItem', {
+  tableName: 'order_items',
+  order() {
+    return this.belongsTo('Order', 'order_id')
+  },
+  product() {
+    return this.belongsTo('Product')
   }
 });
 
@@ -44,5 +68,7 @@ module.exports = {
   Type,
   Size,
   User,
-  CartItem
+  CartItem,
+  Order,
+  OrderItem
 };

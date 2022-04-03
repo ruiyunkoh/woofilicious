@@ -1,13 +1,15 @@
-const { CartItem } = require('../models');
+const {
+  CartItem
+} = require('../models');
 
 const getCart = async (userId) => {
-    return await CartItem.collection()
-      .where({
-        'user_id': userId
-      }).fetch({
-        require: false,
-        withRelated: ['product', 'product.type']
-        });
+  return await CartItem.collection()
+    .where({
+      'user_id': userId
+    }).fetch({
+      require: false,
+      withRelated: ['product', 'product.type']
+    });
 };
 
 const getCartItemByUserAndProduct = async (userId, productId) => {
@@ -17,10 +19,10 @@ const getCartItemByUserAndProduct = async (userId, productId) => {
   }).fetch({
     require: false,
     // withRelated: ['product', 'product.type']
-    });
+  });
 };
 
-//add item to cart
+// add item to cart
 
 async function createCartItem(userId, productId, quantity) {
   let cartItem = new CartItem({
@@ -32,28 +34,35 @@ async function createCartItem(userId, productId, quantity) {
   return cartItem;
 };
 
-//remove item from cart
+// remove item from cart
 
 async function removeFromCart(userId, productId) {
   let cartItem = await getCartItemByUserAndProduct(userId, productId);
   if (cartItem) {
     await cartItem.destroy();
+    // console.log(`Deleted item ${productId} for user ${userId}`)
     return true;
   }
   return false;
 };
 
-//update quantity of cart item
+// update quantity of cart item
 
 async function updateQuantity(userId, productId, newQuantity) {
   let cartItem = await getCartItemByUserAndProduct(userId, productId);
   if (cartItem) {
-      cartItem.set('quantity', newQuantity);
-      cartItem.save();
-      return true;
+    cartItem.set('quantity', newQuantity);
+    cartItem.save();
+    return true;
   }
   return false;
 }
 
 
-module.exports = { getCart, getCartItemByUserAndProduct, createCartItem, removeFromCart, updateQuantity }
+module.exports = {
+  getCart,
+  getCartItemByUserAndProduct,
+  createCartItem,
+  removeFromCart,
+  updateQuantity
+}
