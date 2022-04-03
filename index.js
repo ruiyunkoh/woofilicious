@@ -9,6 +9,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const FileStore = require('session-file-store')(session);
 
+const { ORDER_STATUS } = require('./dal/orders');
+
 // create an instance of express app
 let app = express();
 
@@ -77,6 +79,7 @@ const productRoutes = require('./routes/products');
 const userRoutes = require('./routes/users');
 const cartRoutes = require('./routes/shoppingCart');
 const checkoutRoutes = require('./routes/checkout');
+const orderRoutes = require('./routes/orderManagement');
 
 async function main() {
   app.use('/', landingRoutes);
@@ -84,7 +87,29 @@ async function main() {
   app.use('/users', userRoutes);
   app.use('/cart', cartRoutes);
   app.use('/checkout', checkoutRoutes);
+  app.use('/orders', orderRoutes);
 }
+
+// Add Handlebars helper
+hbs.registerHelper('isAdmin', function (user) {
+  const type = user?.type;
+  return type === 'admin';
+});
+hbs.registerHelper('isNotPending', function (value) {
+  return value !== ORDER_STATUS.PENDING;
+});
+hbs.registerHelper('isNotPaid', function (value) {
+  return value !== ORDER_STATUS.PAID;
+});
+hbs.registerHelper('isNotProcessing', function (value) {
+  return value !== ORDER_STATUS.PROCESSING;
+});
+hbs.registerHelper('isNotShipped', function (value) {
+  return value !== ORDER_STATUS.SHIPPED;
+});
+hbs.registerHelper('isNotCompleted', function (value) {
+  return value !== ORDER_STATUS.COMPLETED;
+});
 
 main();
 

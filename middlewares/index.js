@@ -1,5 +1,5 @@
 const checkIfAuthenticated = (req, res, next) => {
-  if (req.session?.user?.id == 1) {
+  if (req.session?.user?.type == 'admin') {
     next();
   } else {
     req.flash("error_messages", "You need to be authorised to access this page");
@@ -17,5 +17,6 @@ const checkIfLogin = (req, res, next) => {
 }
 
 module.exports = {
-  checkIfAuthenticated, checkIfLogin
+  checkIfAuthenticated,
+  checkIfLogin
 }

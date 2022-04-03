@@ -29,7 +29,7 @@ const getOrderById = async (orderId) => {
       'id': orderId
     }).fetch({
       require: false,
-      withRelated: ['user', 'orderItems']
+      withRelated: ['user', 'orderItems', 'orderItems.product']
     });
 };
 
@@ -76,23 +76,29 @@ async function createOrderAndOrderItems(userId, cartItems) {
 
 // update status of order
 
-async function updateStatus(orderId, newStatus) {
-  let order = await getOrderById(orderId);
-
-  if (order) {
-    order.save({
-      'status': newStatus
-    }, {
-      method: 'update'
-    });
-    return true;
-  }
-
-  return false;
+function updateStatus(orderId, newStatus) {
+  return Order.where({
+    'id': orderId
+  }).save({
+    'status': newStatus
+  }, {
+    method: 'update',
+    require: true
+  }).then((resolve) => {
+    console.log(`Resolved with ${resolve}`);
+    return true
+  }, (err) => {
+    // Catch the error with Model that returns this even though update was successful
+    if (err.message == 'EmptyResponse') {
+      return true;
+    }
+    return false;
+  });
 }
 
 
 module.exports = {
+  ORDER_STATUS,
   getAllOrders,
   getOrderById,
   getOrderByUser,
