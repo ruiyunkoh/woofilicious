@@ -2,7 +2,67 @@
 
 {{#block 'content'}}
 <h1>Orders</h1>
-<div class="orders-container">
+<div class="orders-filter mb-3">
+  <div>
+    <h3>Filter By</h3>
+    <p>Note: You can only filter by one type of filter at a time</p>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th scope="col-2">Status</th>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{#if (isStatusFilter activeFilterType)}}
+                {{activeFilter}}
+                {{else}}
+                Choose status
+                {{/if}}
+              </button>
+              <div class="dropdown-menu">              
+                {{#each statuses}}
+                <form method="GET" action="/orders/">
+                  <input type="hidden" value="{{../csrfToken}}" name="_csrf"/>
+                <input type="submit" class="dropdown-item" name="status" value="{{this}}">
+                </form>              
+                {{/each}}
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="col-2">Month of order creation</th>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{#if (isMonthFilter activeFilterType)}}
+                {{activeFilter}}
+                {{else}}
+                Choose month of 2022
+                {{/if}}
+              </button>
+              <div class="dropdown-menu">              
+                {{#each months}}
+                <form method="GET" action="/orders/">
+                  <input type="hidden" value="{{../csrfToken}}" name="_csrf"/>
+                  <input class="dropdown-item" type="submit" name="month" value="{{this}}">
+                </form>              
+                {{/each}}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="reset-filter">
+      <a role="button" class="btn btn-outline-secondary" href="/orders/">Reset filter</a>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="orders-container mt-3">
   <table class="table table-striped table-bordered">
     <thead>
       <tr>

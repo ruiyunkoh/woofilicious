@@ -110,6 +110,12 @@ hbs.registerHelper('isNotShipped', function (value) {
 hbs.registerHelper('isNotCompleted', function (value) {
   return value !== ORDER_STATUS.COMPLETED;
 });
+hbs.registerHelper('isStatusFilter', function (value) {
+  return value === 'status';
+});
+hbs.registerHelper('isMonthFilter', function (value) {
+  return value === 'month';
+});
 
 main();
 

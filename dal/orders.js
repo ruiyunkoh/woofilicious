@@ -14,6 +14,21 @@ const ORDER_STATUS = {
   COMPLETED: 'completed'
 };
 
+const MONTH = {
+  January: 1,
+  February: 2,
+  March: 3,
+  April: 4,
+  May: 5,
+  June: 6,
+  July: 7,
+  August: 8,
+  September: 9,
+  October: 10,
+  November: 11,
+  December: 12
+}
+
 const getAllOrders = async () => {
   return await Order.collection()
     .where({})
@@ -33,10 +48,10 @@ const getOrderById = async (orderId) => {
     });
 };
 
-const getOrderByUser = async (userId) => {
+const getOrderByCreatedDate = async (minDate, maxDate) => {
   return await Order.collection()
-    .where({
-      'user_id': userId
+    .query(function(qb) {
+      qb.whereBetween('created_at', [minDate, maxDate]);
     }).fetch({
       require: false,
       withRelated: ['user', 'orderItems']
@@ -99,9 +114,10 @@ function updateStatus(orderId, newStatus) {
 
 module.exports = {
   ORDER_STATUS,
+  MONTH,
   getAllOrders,
   getOrderById,
-  getOrderByUser,
+  getOrderByCreatedDate,
   getOrderByStatus,
   createOrderAndOrderItems,
   updateStatus

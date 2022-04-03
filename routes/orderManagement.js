@@ -3,16 +3,38 @@ const {
   checkIfAuthenticated
 } = require('../middlewares');
 const router = express.Router();
+const moment = require('moment-timezone');
 
 const {
   getAllOrders,
   getOrderByStatus,
+  getOrderByCreatedDate,
   getOrderById,
   updateStatus,
+  ORDER_STATUS,
+  MONTH
 } = require('../dal/orders');
 
 router.get('/', checkIfAuthenticated, async (req, res) => {
-  const orders = (await getAllOrders()).toJSON();
+  const statusFilter = req.query?.status;
+  const monthFilter = req.query?.month;
+  let orders, activeFilter, activeFilterType;
+
+  if (statusFilter) {
+    orders = (await getOrderByStatus(statusFilter)).toJSON();
+    activeFilter = statusFilter;
+    activeFilterType = 'status';
+  } else if (monthFilter) {
+    const month = MONTH[monthFilter];
+    const minDate = moment.tz([2022, month - 1], 'Asia/Singapore').toDate();
+    const maxDate = moment.tz(minDate, 'Asia/Singapore').endOf('month').toDate();
+    orders = (await getOrderByCreatedDate(minDate, maxDate)).toJSON();
+    activeFilter = monthFilter;
+    activeFilterType = 'month';
+  } else {
+    orders = (await getAllOrders()).toJSON();
+  }
+
   const formattedOrders = orders.map((order) => ({
     ...order,
     createdAt: order.created_at.toLocaleString('en-GB', {
@@ -25,7 +47,11 @@ router.get('/', checkIfAuthenticated, async (req, res) => {
   }))
 
   res.render('orderManagement/orders', {
-    'orders': formattedOrders
+    'orders': formattedOrders,
+    'statuses': Object.values(ORDER_STATUS),
+    'months': Object.keys(MONTH),
+    'activeFilter': activeFilter,
+    'activeFilterType': activeFilterType
   });
 });
 
