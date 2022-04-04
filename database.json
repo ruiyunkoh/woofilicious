@@ -12,9 +12,9 @@
     "database": {
       "ENV": "DB_DATABASE"
     },
-    "host": {
-      "ENV": "DB_HOST"
+    "host": {"ENV":"DB_HOST"},
+    "ssl": {
+      "rejectUnauthorized": false
     }
   }
-
 }
