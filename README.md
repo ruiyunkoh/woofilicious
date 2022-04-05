@@ -39,7 +39,7 @@ The e-commerce website aims to target the growing market size of dog owners, by 
 
   ## 2.2 Features
   
-  You may refer to the uploaded document for screenshots of the e-commerce website features: [features.pdf](https://github.com/ruiyunkoh/woofilicious/files/8400097/features.pdf)
+  You may refer to the uploaded document for screenshots of the e-commerce website features, to view concurrently with the table below: [features.pdf](https://github.com/ruiyunkoh/woofilicious/files/8418846/features.pdf)
 
   
   |  #  | Feature Description    | Fig ref           |
@@ -47,16 +47,20 @@ The e-commerce website aims to target the growing market size of dog owners, by 
   |1| The website is created on a Single Page Application. | |
   |2| The main feature of this webpage would be the Products page - which displays all dog food products listed. |Fig 2|
   |3| The products page has a search and filter function based on various criterias, up to the users. |Fig 2|
-  |4| Every product is featured within a card format, with its information summarised. Each card has its own Add to Cart, Edit and Delete buttons. The add to Cart feature is only available to users logged in. The Edit and Delete product feature is only available to the show owner (admin). |Fig 2|
+  |4| Every product is featured within a card format, with its information summarised. Each card has its own Add to Cart, Edit and Delete buttons. The add to Cart feature is only available to users logged in. The Edit and Delete product feature is only available to the show Owner (admin). |Fig 2|
   |5| Owner can create posting by selecting the 'Add more products' button at the bottom of products page. A posting creation form will appear. Form validation exists to ensure all fields are filled in before the form is successfully submitted. Upon successful submission, users are redirected back to 'Products' page, with an alert to inform on the submission. |Fig 3|
   |6| Owner can edit individual postings by selecting the edit icon within the card. This brings owner to a form page (with all existing fields filled up). Form validation exists to ensure all fields are filled in before the form is successfully submitted. Upon successful Edit, users are redirected back to 'Products' page, with an alert to inform on the Edit. |Fig 4|
   |7| Users can click on the title of individual posting to be redirected to a page showing detailed product information. An add to cart button is also available in this page. |Fig 5|
   |8| Owner can delete individual posting. This brings the owner to a confirmation page to prevent accidental deletion. Upon successful Deletion, Owner is redirected back to 'Products' page, with an alert to inform on the Deletion. Cancellation of this process will also redirect Owner back to the Products page. |Fig 6|
   |9| Upon signing in, the website would greet the user by their username. Users are also able to view their profile (which is not available if they are not logged in. |Fig 7|
   |10| E-commerce website features a log in page and form. Within the log in page, it also has a button to direct new users to register if they do not have an account. |Fig 8|
-  |11| New users can create an account by clicking on the register button. Form validation exists to ensure all fields are filled in and 'Password' and 'Confirm Password' fields matches, before the form is successfully submitted. |Fig 9|
+  |11| New users can create an account by clicking on the register button. Form validation exists to ensure all fields are filled in and 'Password' and 'Confirm Password' fields matches, before the form is successfully submitted. By default, created accounts are 'users'. To change to admin, it has to be done backend by changing the data field. |Fig 9|
   |12| Logged in users are able to add products into the shopping cart. Shopping cart shows products added in a list format, for each product. Users are able to amend product quantity and remove product from cart. Finally, check out button exists to redirect users to payment gateway. Checkout option is blacked out if there is no item in the cart.|Fig 10|
   |13| Website is mobile responsive. |Fig 11|
+  |14| Order tab is only visible to Owner. |Fig 12|
+  |15| Owner can filter the orders via 2 options: (i) Order status (ii) Month created. |Fig 13|
+  |16| Owner can change the order status via the drop down option. The page will be redirected to refresh to recognise the change. |Fig 13|
+  |17| By clicking on the "view details" link of each order (in the main order management table), Owner can view the details of the order. This includes the breakdown of items ordered (product name, quantity, cost). |Fig 14|
   
 # 3. Implementation
 
@@ -90,13 +94,17 @@ The e-commerce website aims to target the growing market size of dog owners, by 
  |8 | Testing of update quantity function in shopping cart | Amends quantity and clicks "Update quantity" button. | On page refresh, updated quantity is reflected. |
  |9 | Testing of remove item function in shopping cart | "Remove" button is clicked. | On page refresh, the item disappears from cart. |
  |10| Testing of checkout button in shopping cart | "Checkout" button is clicked. | Redirected to Stripe payment gateway |
- |11| Testing of order management page (for owner only) | 1. Products are checked out from shopping cart. <br> 2. Clicks on view orders in User profile page | Checked out orders appears. |
+ |11| Testing of order creation (for owner only) | Creating an order as a user account. Then logged in to view "orders" tab (in Navbar). | The new order appears|
+ |12| Testing of filter of orders (for owner only) | 1. Selected "paid" status in filter option. 2. Selected "February" month in filter option. | 1. Only paid orders are shown. 2. Only orders created in February are shown|
+ |13| Update order status (for owner only) | Changed order status to "Shipped" | Order Management page is redirected and refreshed, with change in status registered.|
+ |14| Order detail is correct (for owner only) | Added 2 products "testuser" account to cart and checked out. Clicked into "view details" in order management page. | The 2 products are shown under "Items ordered" table. Username is shown. |
 
 # 4. Deployment
   
   <li> The project was built on Gitpod, and monitored via port 3000 after enabling nodemon, before being deployed on Heroku. </li>
   <li> The project was committed, staged, and pushed to GitHub on a usual basis. </li>
   <li> MySQL database was built using using migration technique, via ORM Bookshelf. </li>
+  <li> The base Gitpod template I had started out with to build my codes, is from Paul. Link to his Github for the template is credited below in Section 5. </li>
   
   ### Front-end using HBS, HTML/CSS
   All codes can be found within 'views' folder. <br>
@@ -121,5 +129,6 @@ The e-commerce website aims to target the growing market size of dog owners, by 
   <li> <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">Bootstrap</a></li>
   <li> <a href="https://stripe.com/docs"> Stripe </a></li>
   <li> <a href="https://github.com/caolan/forms"> Caolan Forms </a></li>
+  <li> <a href="https://github.com/kunxin-chor/gitpod-full-template"> Built on Paul's gitpod template </a></li>
   
  
