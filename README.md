@@ -8,7 +8,7 @@ Furthermore, trends continues to grow, especially during the pandemic, where dog
 The e-commerce website aims to target the growing market size of dog owners, by selling different types of food considerations to owners. 
 
   ### Relevant website link
-  Website deployment on Heroku: 
+  Website deployment on Heroku: https://woofilicious.herokuapp.com/
   
   <b> For shop owner details (admin) for testing purpose, please refer to section 3.2 on Testing below. </b>
   
@@ -55,7 +55,7 @@ The e-commerce website aims to target the growing market size of dog owners, by 
   |9| Upon signing in, the website would greet the user by their username. Users are also able to view their profile (which is not available if they are not logged in. |Fig 7|
   |10| E-commerce website features a log in page and form. Within the log in page, it also has a button to direct new users to register if they do not have an account. |Fig 8|
   |11| New users can create an account by clicking on the register button. Form validation exists to ensure all fields are filled in and 'Password' and 'Confirm Password' fields matches, before the form is successfully submitted. |Fig 9|
-  |12| Logged in users are able to add products into the shopping cart. Shopping cart shows products added in a list format, for each product. Users are able to amend product quantity and remove product from cart. Finally, check out button exists to redirect users to payment gateway. |Fig 10|
+  |12| Logged in users are able to add products into the shopping cart. Shopping cart shows products added in a list format, for each product. Users are able to amend product quantity and remove product from cart. Finally, check out button exists to redirect users to payment gateway. Checkout option is blacked out if there is no item in the cart.|Fig 10|
   |13| Website is mobile responsive. |Fig 11|
   
 # 3. Implementation
